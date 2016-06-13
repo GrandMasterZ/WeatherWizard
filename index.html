@@ -9,10 +9,29 @@
     <script src="js/map.js"></script>
 </head>
 <body>
-    <div class="col-xs-3">
+    <div class="col-sm-4 col-xs-12">
         <h2> Weather Wizard </h2>
+        <div class="row margin">
+            <input class="col-xs-9" type="text" placeholder="Enter location">
+            <input class="col-xs-3" type="button" value="Go!">
+        </div>
+        <h2> Current location weather </h2>
+        <div class="reportBox">
+            <h2> City </h2>
+            <h2> 2016-06-13 Monday </h2>
+            <div class="row margin">
+                <input class="col-xs-4 noPadding reportButton" type="button" value="Previous day">
+                <input class="col-xs-4 noPadding reportButton" type="button" value="Next day">
+                <input class="col-xs-4 noPadding reportButton" type="button" value="Calendar">
+            </div>
+            <p> Temp. </p>
+            <p> Humidity </p>
+            <p> Wind direction </p>
+            <p> Wind speed </p>
+            <p> Last updated </p>
+        </div>
     </div>
-    <div class="col-xs-9">
+    <div class="col-sm-8 hidden-xs">
         <div id="map">
 
         </div>
