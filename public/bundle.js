@@ -65,7 +65,8 @@
 	    getInitialState: function getInitialState() {
 	        return {
 	            weather: {},
-	            location: {}
+	            location: {},
+	            info: {}
 	        };
 	    },
 
@@ -77,7 +78,7 @@
 	            dataType: 'json',
 	            cache: false,
 	            success: function (data) {
-	                this.setState({ location: data.location, weather: data.current });
+	                this.setState({ location: data.location, weather: data.current, info: data.current.condition });
 	            }.bind(this),
 	            error: function error(xhr, status, err) {
 	                console.error(this.props.url, status, err.toString());
@@ -112,6 +113,7 @@
 	    },
 
 	    render: function render() {
+	        console.log(this.state.info);
 	        return React.createElement(
 	            'div',
 	            { className: 'reportBox' },
@@ -139,8 +141,11 @@
 	            React.createElement(
 	                'p',
 	                { className: 'temp' },
+	                this.state.info.text,
+	                ' ',
 	                this.state.weather.feelslike_c,
-	                ' ℃ '
+	                '℃ ',
+	                React.createElement('img', { src: 'http:' + this.state.info.icon })
 	            ),
 	            React.createElement(
 	                'p',
@@ -165,7 +170,7 @@
 	            React.createElement(
 	                'p',
 	                null,
-	                ' Last updated ',
+	                ' Last updated: ',
 	                this.state.weather.last_updated,
 	                ' '
 	            )

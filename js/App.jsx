@@ -11,7 +11,8 @@ var ReportUI = React.createClass({
     {
         return {
             weather: {},
-            location: {}
+            location: {},
+            info: {}
         }
     },
 
@@ -24,7 +25,7 @@ var ReportUI = React.createClass({
             dataType: 'json',
             cache: false,
             success: function(data) {
-                this.setState({location: data.location, weather: data.current});
+                this.setState({location: data.location, weather: data.current, info:data.current.condition});
             }.bind(this),
             error: function(xhr, status, err) {
                 console.error(this.props.url, status, err.toString());
@@ -57,6 +58,7 @@ var ReportUI = React.createClass({
     },
 
     render: function() {
+        console.log(this.state.info);
         return (
             <div className="reportBox">
                 <h2> {this.state.location.name} </h2>
@@ -66,11 +68,11 @@ var ReportUI = React.createClass({
                     <input className="col-xs-4 noPadding reportButton" type="button" value="Next day"/>
                     <input className="col-xs-4 noPadding reportButton" type="button" value="Calendar"/>
                 </div>
-                <p className="temp">{this.state.weather.feelslike_c} ℃ </p>
+                <p className="temp">{this.state.info.text} {this.state.weather.feelslike_c}℃ <img src={'http:' + this.state.info.icon} /></p>
                 <p> Humidity {this.state.weather.humidity} </p>
                 <p> Wind direction {this.state.weather.wind_dir}</p>
                 <p> Wind speed {this.state.weather.wind_kph} </p>
-                <p> Last updated {this.state.weather.last_updated} </p>
+                <p> Last updated: {this.state.weather.last_updated} </p>
             </div>
         );
     }
