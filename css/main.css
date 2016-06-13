@@ -33,6 +33,7 @@ h2
 
 .reportBox
 {
+    margin-top:20px;
     width: 100%;
     background-color:black;
     color:white;
@@ -65,3 +66,5 @@ h2
     font-size:40px;
     text-align: center;
 }
+
+
