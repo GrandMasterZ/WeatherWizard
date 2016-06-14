@@ -1,6 +1,7 @@
 html, body
 {
     height: 100%;
+    s
 }
 
 .margin
@@ -23,6 +24,7 @@ h2
 {
     padding: 0;
     height: 100%;
+    margin-top:10px;
 }
 
 #map
@@ -33,7 +35,6 @@ h2
 
 .reportBox
 {
-    margin-top:20px;
     width: 100%;
     background-color:black;
     color:white;
@@ -48,11 +49,15 @@ h2
 {
     background-color: #000080;
     border-color: black;
+    -moz-border-top-colors: black;
+    -moz-border-left-colors: black;
+    -moz-border-right-colors: black;
+    -moz-border-bottom-colors: black;
     height: 75px;
     text-align: center;
     opacity: 1;
     font-size: 22px;
-    transition: 1s font-size opacity;
+    transition: 1s opacity;
 }
 
 .reportButton:hover
@@ -67,4 +72,44 @@ h2
     text-align: center;
 }
 
+.btn
+{
+    border-radius:0;
+}
 
+.line
+{
+    margin-top:100px;
+}
+
+.cityInput
+{
+    height:50px;
+    border-radius:0;
+    border-color:black;
+    -moz-border-top-colors: black;
+    -moz-border-bottom-colors: black;
+    -moz-border-left-colors: black;
+    -moz-border-right-colors: black;
+}
+
+input[placeholder]
+{
+    font-size:26px;
+}
+
+.confirmButton
+{
+    height:50px;
+    background-color: #000080;
+    border:0;
+    color:white;
+    opacity: 1;
+    font-size: 16px;
+    transition: 1s opacity;
+}
+
+.confirmButton:hover
+{
+    opacity: 0.8;
+}

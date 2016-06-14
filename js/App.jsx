@@ -1,6 +1,8 @@
 import TimerMixin from 'react-timer-mixin';
 const React = require('react')
 const ReactDOM = require('react-dom')
+const Form = require('./Form.jsx')
+const Report = require('./Report.jsx')
 const $ = require('jquery')
 require('./map.js')
 
@@ -62,6 +64,7 @@ var ReportUI = React.createClass({
     {
         this.loadWeatherByLocation();
         this.setInterval(() => {this.loadWeatherByCity(this.state.currentCity);}, 60000);
+        $(document.body).on('keydown', this.fired);
     },
 
     fired:function(e)
@@ -76,25 +79,8 @@ var ReportUI = React.createClass({
     render: function() {
         return (
             <div>
-                <h2> Weather Wizard </h2>
-                <div class="row margin" onKeyDown={this.fired}>
-                    <input className="col-xs-9" id="cityText" type="text" placeholder="Enter location"/>
-                    <input className="col-xs-3" id="citySubmit" type="button" onClick={this.searchByCity} onKeyDown={this.fired} value="Go!"/>
-                </div>
-                <div className="reportBox">
-                    <h2> {this.state.location.name} </h2>
-                    <h2> {this.state.location.localtime} </h2>
-                    <div class="row margin">
-                        <input className="col-xs-4 noPadding reportButton" type="button" value="Previous day"/>
-                        <input className="col-xs-4 noPadding reportButton" type="button" value="Next day"/>
-                        <input className="col-xs-4 noPadding reportButton" type="button" value="Calendar"/>
-                    </div>
-                    <p className="temp">{this.state.info.text} {this.state.weather.feelslike_c}℃ <img src={'http:' + this.state.info.icon} /> </p>
-                    <p className="temp"> {this.state.weather.humidity} <img width="64" height="64" src="/home/asdsda/Desktop/WeatherWizard/images/Humidity1.png" /> </p>
-                    <p> Wind direction {this.state.weather.wind_dir}</p>
-                    <p> Wind speed {this.state.weather.wind_kph} kph</p>
-                    <p> Last updated: {this.state.weather.last_updated} </p>
-                </div>
+                <Form search={this.searchByCity} />
+                <Report weather={this.state.weather} location={this.state.location} info={this.state.info} />
             </div>
         );
     }
