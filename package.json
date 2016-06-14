@@ -10,11 +10,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "babel-plugin-transform-es2015-modules-umd": "^6.8.0",
     "bootstrap": "^3.3.6",
     "jquery": "^3.0.0",
     "react": "^15.1.0",
     "react-autosuggest": "^3.7.4",
     "react-dom": "^15.1.0",
+    "react-if": "^2.1.0",
     "react-timer-mixin": "^0.13.3",
     "webpack": "^1.13.1"
   },
