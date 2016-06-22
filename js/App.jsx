@@ -21,13 +21,18 @@ var ReportUI = React.createClass({
     },
     
     loadWeatherByCity: function (city) {
+        var report = document.getElementById('reportUI');
         var url = 'http://api.apixu.com/v1/forecast.json?key=a76117fc3c5841c7b5c152812161206&q=' + city + '&days=10';
         $.ajax({
             url: url,
             dataType: 'json',
             cache: false,
+            beforeSend: function() {
+                $(report).attr('class', 'blur');
+            },
             success: function (data) {
                 this.setState({location: data.location, weather: data.current, info: data.current.condition, forecast: data.forecast.forecastday});
+                $(report).attr('class', '');
             }.bind(this),
             error: function (xhr, status, err) {
                 console.error(this.props.url, status, err.toString());
@@ -37,6 +42,8 @@ var ReportUI = React.createClass({
 
     searchByCity: function ()
     {
+        var report = document.getElementById('reportUI');
+        console.log(report);
         this.setState({forecastDelivered:false});
         var text = document.getElementById('cityText').value;
         this.loadWeatherByCity(text);

@@ -14,13 +14,13 @@ h2
     text-align: center;
 }
 
-.col-sm-8
+.col-md-8
 {
     padding: 0;
     height: 100%;
 }
 
-.col-xs-12
+.col-sm-12
 {
     padding: 0;
     height: 100%;
@@ -112,4 +112,9 @@ input[placeholder]
 .confirmButton:hover
 {
     opacity: 0.8;
+}
+
+.blur
+{
+    opacity: 0.5;
 }
