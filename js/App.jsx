@@ -106,9 +106,14 @@ var ReportUI = React.createClass({
         }
     },
 
-    changeForecastStatus:function()
+    changeForecastStatus: function()
     {
         this.setState({forecastDelivered:true});
+    },
+    
+    removeForecastStatus: function()
+    {
+        this.setState({forecastDelivered:false});
     },
     
     render: function() {
@@ -119,7 +124,7 @@ var ReportUI = React.createClass({
                         location={this.state.location} changeStatus={this.changeForecastStatus} 
                         status={this.state.forecastDelivered} info={this.state.info} 
                         indexDown={this.downIndexByOne} index={this.state.indexNeeded}
-                        indexUp={this.addIndexByOne} />
+                        indexUp={this.addIndexByOne} removeStatus={this.removeForecastStatus} />
             </div>
         );
     }

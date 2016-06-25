@@ -60,6 +60,22 @@ h2
     transition: 1s opacity;
 }
 
+.reportButtonWidth
+{
+    background-color: #000080;
+    border-color: black;
+    -moz-border-top-colors: black;
+    -moz-border-left-colors: black;
+    -moz-border-right-colors: black;
+    -moz-border-bottom-colors: black;
+    height: 75px;
+    text-align: center;
+    opacity: 1;
+    font-size: 22px;
+    transition: 1s opacity;
+    width:100%;
+}
+
 .reportButton:hover
 {
     font-size:23px;

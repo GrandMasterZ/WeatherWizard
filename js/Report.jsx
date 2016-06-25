@@ -22,6 +22,11 @@ var Report = React.createClass({
         }
     },
 
+    backToCurrentWeather: function()
+    {
+        this.props.removeStatus();
+    },
+
     render: function() {
         let reportContent;
         if(this.props.status)
@@ -36,8 +41,9 @@ var Report = React.createClass({
                         <input className="col-xs-4 noPadding reportButton" type="button" value="Calendar"/>
                     </div>
                     <h2> Day average </h2>
-                    <p className="temp">{this.props.forecast[this.props.index].day.avgtemp_c} <img src={'http:' + this.props.forecast[this.props.index].day.condition.icon} /> </p>
+                    <p className="temp"> {this.props.forecast[this.props.index].day.condition.text} {this.props.forecast[this.props.index].day.avgtemp_c}℃ <img src={'http:' + this.props.forecast[this.props.index].day.condition.icon} /> </p>
                     <p> Wind speed max: {this.props.forecast[this.props.index].day.maxwind_kph} kph</p>
+                    <input onClick={this.backToCurrentWeather} className="reportButtonWidth" type="button" value="Show current weather" />
                 </div>
             )
         }
