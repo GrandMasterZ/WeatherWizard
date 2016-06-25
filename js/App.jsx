@@ -16,13 +16,30 @@ var ReportUI = React.createClass({
             info: {},
             currentCity: {},
             forecastDelivered: false,
-            forecast: []
+            forecast: [],
+            indexNeeded: 0
         }
     },
     
+    addIndexByOne: function()
+    {
+        this.setState({indexNeeded: this.state.indexNeeded+1})
+    },
+    
+    downIndexByOne: function()
+    {
+        this.setState({indexNeeded: this.state.indexNeeded-1})
+    },
+    
+    setToDefault: function()
+    {
+        this.setState({indexNeeded: 0})
+    },
+
     loadWeatherByCity: function (city) {
         var report = document.getElementById('reportUI');
         var url = 'http://api.apixu.com/v1/forecast.json?key=a76117fc3c5841c7b5c152812161206&q=' + city + '&days=10';
+        this.setToDefault();
         $.ajax({
             url: url,
             dataType: 'json',
@@ -33,6 +50,8 @@ var ReportUI = React.createClass({
             success: function (data) {
                 this.setState({location: data.location, weather: data.current, info: data.current.condition, forecast: data.forecast.forecastday});
                 $(report).attr('class', '');
+                $("#cityText").val('');
+                $("#nextDay").prop('disabled', false);
             }.bind(this),
             error: function (xhr, status, err) {
                 console.error(this.props.url, status, err.toString());
@@ -96,7 +115,11 @@ var ReportUI = React.createClass({
         return (
             <div>
                 <Form search={this.searchByCity} />
-                <Report weather={this.state.weather} location={this.state.location} changeStatus={this.changeForecastStatus} status={this.state.forecastDelivered} info={this.state.info} />
+                <Report forecast={this.state.forecast} weather={this.state.weather} 
+                        location={this.state.location} changeStatus={this.changeForecastStatus} 
+                        status={this.state.forecastDelivered} info={this.state.info} 
+                        indexDown={this.downIndexByOne} index={this.state.indexNeeded}
+                        indexUp={this.addIndexByOne} />
             </div>
         );
     }

@@ -1,7 +1,7 @@
 html, body
 {
     height: 100%;
-    s
+    overflow:hidden;
 }
 
 .margin
@@ -117,4 +117,23 @@ input[placeholder]
 .blur
 {
     opacity: 0.5;
+}
+
+input[type="button"]:disabled {
+    background: #9dbfdd;
+}
+
+
+span
+{
+    font-size:15px;
+    font-style: italic;
+}
+
+@media (max-width: 300px)
+{
+    html,body
+    {
+        overflow: auto;
+    }
 }
