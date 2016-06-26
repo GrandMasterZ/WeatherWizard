@@ -48,13 +48,21 @@ var ReportUI = React.createClass({
                 $(report).attr('class', 'blur');
             },
             success: function (data) {
-                this.setState({location: data.location, weather: data.current, info: data.current.condition, forecast: data.forecast.forecastday});
-                $(report).attr('class', '');
-                $("#cityText").val('');
-                $("#nextDay").prop('disabled', false);
+                if(data.error==null)
+                {
+                    this.setState({location: data.location, weather: data.current, info: data.current.condition, forecast: data.forecast.forecastday});
+                    $(report).attr('class', '');
+                    $("#cityText").val('');
+                    $("#nextDay").prop('disabled', false);
+                }
+                else
+                {
+                    alert(data.error.message)
+                    $(report).attr('class', '');
+                }
             }.bind(this),
             error: function (xhr, status, err) {
-                console.error(this.props.url, status, err.toString());
+                alert('Location not found')
             }
         });
     },
@@ -62,11 +70,13 @@ var ReportUI = React.createClass({
     searchByCity: function ()
     {
         var report = document.getElementById('reportUI');
-        console.log(report);
         this.setState({forecastDelivered:false});
         var text = document.getElementById('cityText').value;
-        this.loadWeatherByCity(text);
-        this.setState({currentCity:text});
+        if(text!='')
+        {
+            this.loadWeatherByCity(text);
+            this.setState({currentCity:text});
+        }
     },
 
     loadWeatherByLocation: function()
@@ -124,7 +134,9 @@ var ReportUI = React.createClass({
                         location={this.state.location} changeStatus={this.changeForecastStatus} 
                         status={this.state.forecastDelivered} info={this.state.info} 
                         indexDown={this.downIndexByOne} index={this.state.indexNeeded}
-                        indexUp={this.addIndexByOne} removeStatus={this.removeForecastStatus} />
+                        indexUp={this.addIndexByOne} removeStatus={this.removeForecastStatus}
+                        default={this.setToDefault}
+                />
             </div>
         );
     }

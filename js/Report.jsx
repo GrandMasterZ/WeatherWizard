@@ -24,6 +24,7 @@ var Report = React.createClass({
 
     backToCurrentWeather: function()
     {
+        this.props.default();
         this.props.removeStatus();
     },
 
@@ -35,12 +36,15 @@ var Report = React.createClass({
                 <div className="reportBox">
                     <h2> {this.props.location.name} <span> ({this.props.location.country}) </span> </h2>
                     <h2> {this.props.forecast[this.props.index].date} </h2>
+                    <div id="myProgress">
+                        <div id="myBar"></div>
+                    </div>
                     <div class="row margin">
                         <input onClick={this.previousDayData} className="col-xs-4 noPadding reportButton" type="button" value="Previous day" id="prevDay"/>
                         <input onClick={this.nextDayData} className="col-xs-4 noPadding reportButton" type="button" value="Next day" id="nextDay" />
                         <input className="col-xs-4 noPadding reportButton" type="button" value="Calendar"/>
                     </div>
-                    <h2> Day average </h2>
+                    <h2 className="italic"> Day average </h2>
                     <p className="temp"> {this.props.forecast[this.props.index].day.condition.text} {this.props.forecast[this.props.index].day.avgtemp_c}℃ <img src={'http:' + this.props.forecast[this.props.index].day.condition.icon} /> </p>
                     <p> Wind speed max: {this.props.forecast[this.props.index].day.maxwind_kph} kph</p>
                     <input onClick={this.backToCurrentWeather} className="reportButtonWidth" type="button" value="Show current weather" />
@@ -53,6 +57,9 @@ var Report = React.createClass({
                 <div className="reportBox">
                     <h2> {this.props.location.name} <span> ({this.props.location.country}) </span> </h2>
                     <h2> {this.props.location.localtime} </h2>
+                    <div id="myProgress">
+                        <div id="myBar"></div>
+                    </div>
                     <div class="row margin">
                         <input className="col-xs-4 noPadding reportButton" type="button" value="Previous day"/>
                         <input onClick={this.nextDayData} className="col-xs-4 noPadding reportButton" type="button" value="Next day"/>
